@@ -1,0 +1,2625 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة تعاونيات سيدي مومن - دعم المنتجات المحلية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* جميع الأنماط السابقة تبقى كما هي */
+        :root {
+            --primary-color: #27ae60;
+            --primary-dark: #219653;
+            --primary-light: #6fcf97;
+            --secondary-color: #f2994a;
+            --secondary-dark: #e67e22;
+            --accent-color: #9b51e0;
+            --accent-dark: #8e44ad;
+            --text-color: #2d3436;
+            --text-light: #636e72;
+            --light-color: #ffffff;
+            --light-bg: #f8f9fa;
+            --dark-bg: #2d3436;
+            --gray-light: #dfe6e9;
+            --gray: #b2bec3;
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+            --box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --box-shadow-lg: 0 20px 50px rgba(0,0,0,0.15);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            --gradient-secondary: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
+            --gradient-accent: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+            --gradient-light: linear-gradient(135deg, #ffffff, #f8f9fa);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* رأس الصفحة - تصميم جديد */
+        header {
+            background: var(--gradient-primary);
+            padding: 1.2rem 0;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            padding: 0.8rem 0;
+            background: rgba(39, 174, 96, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 60px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        .site-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--light-color);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 15px;
+        }
+        
+        nav ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            padding: 8px 16px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--gradient-secondary);
+            color: var(--light-color);
+            padding: 0.9rem 1.8rem;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(242, 153, 74, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .btn:hover::before {
+            transform: translateX(0);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(242, 153, 74, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--light-color);
+            color: var(--light-color);
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            background: var(--light-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background: var(--gradient-primary);
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 10px 25px rgba(39, 174, 96, 0.4);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .btn-danger:hover {
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.4);
+        }
+        
+        /* قسم البطل - تصميم جديد */
+        .hero {
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(39, 174, 96, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(155, 81, 224, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: var(--light-color);
+            padding: 8rem 0 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            background: linear-gradient(to right, #ffffff, #f2994a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        /* الأقسام الرئيسية - تصميم جديد */
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        .section-bg-1 {
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(39, 174, 96, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(242, 153, 74, 0.05) 0%, transparent 50%),
+                var(--light-bg);
+        }
+        
+        .section-bg-2 {
+            background: 
+                radial-gradient(circle at 90% 20%, rgba(155, 81, 224, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 10% 80%, rgba(39, 174, 96, 0.05) 0%, transparent 50%),
+                var(--light-color);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: var(--gradient-primary);
+            margin: 15px auto;
+            border-radius: 5px;
+        }
+        
+        .section-title p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        /* قسم المنتجات - تصميم جديد */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: var(--gradient-light);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-lg);
+        }
+        
+        .product-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+        
+        .product-coop {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .product-price {
+            color: var(--primary-color);
+            font-weight: 800;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+        
+        .product-rating {
+            color: #FFC107;
+            margin-bottom: 15px;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        /* قسم التعاونيات - تصميم جديد */
+        .cooperatives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .cooperative-card {
+            background: var(--gradient-light);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .cooperative-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-lg);
+        }
+        
+        .cooperative-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .cooperative-card:hover .cooperative-img {
+            transform: scale(1.05);
+        }
+        
+        .cooperative-info {
+            padding: 25px;
+        }
+        
+        .cooperative-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+        
+        .cooperative-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .cooperative-social a {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            transition: var(--transition);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(39, 174, 96, 0.1);
+        }
+        
+        .cooperative-social a:hover {
+            color: var(--light-color);
+            background: var(--gradient-primary);
+            transform: translateY(-3px);
+        }
+        
+        /* زر حذف التعاونية */
+        .delete-coop-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(231, 76, 60, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            z-index: 2;
+        }
+        
+        .cooperative-card:hover .delete-coop-btn {
+            opacity: 1;
+        }
+        
+        .delete-coop-btn:hover {
+            background: #e74c3c;
+            transform: scale(1.1);
+        }
+        
+        /* نموذج التسجيل - تصميم جديد */
+        .registration-form {
+            background: var(--gradient-light);
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--box-shadow);
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--light-color);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            min-height: 140px;
+            resize: vertical;
+        }
+        
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .file-upload-input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .file-upload-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem;
+            border: 2px dashed var(--gray-light);
+            border-radius: var(--border-radius);
+            background-color: var(--light-color);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .file-upload-label:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(39, 174, 96, 0.05);
+        }
+        
+        .file-upload-label i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .file-upload-preview {
+            margin-top: 1rem;
+            max-width: 150px;
+            display: none;
+            border-radius: var(--border-radius);
+        }
+        
+        /* قسم التكوينات - تصميم جديد */
+        .trainings-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .training-card {
+            background: var(--gradient-light);
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .training-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-lg);
+        }
+        
+        .training-title {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .training-date {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* زر حذف التكوين */
+        .delete-training-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(231, 76, 60, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+        }
+        
+        .training-card:hover .delete-training-btn {
+            opacity: 1;
+        }
+        
+        .delete-training-btn:hover {
+            background: #e74c3c;
+            transform: scale(1.1);
+        }
+        
+        /* قسم القوانين - تصميم جديد */
+        .laws-container {
+            background: var(--gradient-light);
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .law-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--gray-light);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            position: relative;
+        }
+        
+        .law-item:last-child {
+            border-bottom: none;
+        }
+        
+        .law-icon {
+            background: var(--gradient-primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+        
+        .law-content {
+            flex: 1;
+        }
+        
+        .law-title {
+            color: var(--text-color);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        
+        /* زر حذف القانون */
+        .delete-law-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(231, 76, 60, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+        }
+        
+        .law-item:hover .delete-law-btn {
+            opacity: 1;
+        }
+        
+        .delete-law-btn:hover {
+            background: #e74c3c;
+            transform: scale(1.1);
+        }
+        
+        .upload-law-section {
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--gray-light);
+        }
+        
+        /* وسائل التواصل الاجتماعي - تصميم جديد */
+        .social-section {
+            background: var(--gradient-primary);
+            color: var(--light-color);
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--light-color);
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            background-color: rgba(255, 255, 255, 0.15);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        
+        .social-link:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+        }
+        
+        /* تذييل الصفحة - تصميم جديد */
+        footer {
+            background: var(--dark-bg);
+            color: var(--light-color);
+            padding: 4rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            height: 70px;
+            width: auto;
+            margin-bottom: 20px;
+            /* إزالة الفلتر الذي كان يحول الشعارات إلى اللون الأبيض */
+            filter: brightness(0) invert(1);
+        }
+        
+        .footer-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--light-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-secondary);
+            border-radius: 3px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #b2bec3;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--light-color);
+            transform: translateX(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #b2bec3;
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1.5rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 5px;
+            }
+            
+            .hero {
+                padding: 6rem 0 4rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .user-actions {
+                margin-top: 1.5rem;
+            }
+            
+            .law-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .delete-coop-btn,
+            .delete-training-btn,
+            .delete-law-btn {
+                opacity: 1;
+            }
+            
+            .registration-form {
+                padding: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .products-grid,
+            .cooperatives-grid,
+            .trainings-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* أنماط نظام التقييم */
+        .rating-stars {
+            display: flex;
+            gap: 3px;
+        }
+        
+        .rating-stars i {
+            color: #ddd;
+        }
+        
+        .rating-stars i.filled {
+            color: #FFC107;
+        }
+        
+        /* أنماط نظام الدفع */
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .payment-method {
+            flex: 1;
+            min-width: 150px;
+            border: 2px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--light-color);
+        }
+        
+        .payment-method.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(39, 174, 96, 0.05);
+        }
+        
+        .payment-method i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .payment-details {
+            margin-top: 1.5rem;
+            display: none;
+        }
+        
+        .bank-info {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+            border: 1px solid var(--gray-light);
+        }
+        
+        /* النوافذ المنبثقة */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background: var(--gradient-light);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            width: 90%;
+            max-width: 500px;
+            box-shadow: var(--box-shadow-lg);
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            animation: modalAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .modal-title {
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-modal:hover {
+            background: rgba(0,0,0,0.05);
+            color: var(--text-color);
+        }
+        
+        /* نافذة تفاصيل المنتج */
+        #productDetailModal .modal-content {
+            max-width: 900px;
+        }
+        
+        .product-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            .product-detail {
+                flex-direction: row;
+            }
+        }
+        
+        .product-detail-image {
+            flex: 1;
+        }
+        
+        .product-detail-image img {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .product-detail-info {
+            flex: 1;
+        }
+        
+        .product-detail-title {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .product-detail-description {
+            margin-top: 20px;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+        
+        /* قسم إضافة التكوينات والمنتجات */
+        .add-section {
+            background: var(--gradient-light);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--box-shadow);
+            margin-top: 3rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .add-section h3 {
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        /* نافذة معلومات التعاونية */
+        .cooperative-details {
+            text-align: center;
+        }
+        
+        .cooperative-details img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);
+        }
+        
+        .cooperative-details h3 {
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .cooperative-contact {
+            margin: 2rem 0;
+            text-align: right;
+        }
+        
+        .cooperative-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+        
+        .cooperative-contact i {
+            color: var(--primary-color);
+            width: 20px;
+        }
+        
+        .cooperative-social-large {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 2rem;
+        }
+        
+        .cooperative-social-large a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+        
+        .cooperative-social-large a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(39, 174, 96, 0.4);
+        }
+        
+        /* أنماط تسجيل دخول المسؤول */
+        .admin-login-form {
+            background: var(--gradient-light);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--box-shadow);
+            max-width: 450px;
+            margin: 0 auto;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--primary-color);
+            font-weight: 700;
+            background: rgba(39, 174, 96, 0.1);
+            padding: 10px 15px;
+            border-radius: 50px;
+        }
+        
+        .admin-info i {
+            font-size: 1.3rem;
+        }
+        
+        .logout-btn {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+        
+        .logout-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        /* تأثيرات إضافية */
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        .shape-1 {
+            width: 150px;
+            height: 150px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 100px;
+            height: 100px;
+            top: 60%;
+            left: 10%;
+            animation-delay: 2s;
+        }
+        
+        .shape-3 {
+            width: 120px;
+            height: 120px;
+            top: 30%;
+            right: 5%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+        
+        /* تأثيرات التحميل */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* حل مشكلة الشعارات في التذييل */
+        .footer-logos {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .footer-logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .footer-logo {
+            height: 70px;
+            width: auto;
+            margin-bottom: 0;
+            /* إزالة الفلتر الذي كان يحول الشعارات إلى اللون الأبيض */
+            filter: brightness(0) invert(1);
+        }
+        
+        .footer-text-logo {
+            color: var(--light-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <!-- رأس الصفحة -->
+    <header id="mainHeader">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <!-- استبدل مسارات الصور بصور افتراضية للعرض -->
+                    <img src="img/logo_alliasim2024.png" alt="شعار رابطة جمعيات سيدي مومن" class="logo">
+                    <img src="img/logo_dynamique-sidimoumen.png" alt="شعار دينامية سيدي مومن" class="logo">
+                    <div class="site-title">منصة تعاونيات سيدي مومن</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home" class="active"><i class="fas fa-home"></i> الرئيسية</a></li>
+                        <li><a href="#products"><i class="fas fa-shopping-bag"></i> المنتجات</a></li>
+                        <li><a href="#cooperatives"><i class="fas fa-handshake"></i> التعاونيات</a></li>
+                        <li><a href="#register"><i class="fas fa-user-plus"></i> تسجيل التعاونيات</a></li>
+                        <li><a href="#trainings"><i class="fas fa-graduation-cap"></i> التكوينات</a></li>
+                        <li><a href="#laws"><i class="fas fa-gavel"></i> القوانين</a></li>
+                    </ul>
+                </nav>
+                <div class="user-actions">
+                    <div id="adminLoginSection">
+                        <button class="btn btn-outline" id="adminLoginBtn"><i class="fas fa-user-shield"></i> دخول المسؤول</button>
+                    </div>
+                    <div id="adminInfoSection" style="display: none;">
+                        <div class="admin-info">
+                            <i class="fas fa-user-shield"></i>
+                            <span>مسؤول النظام</span>
+                        </div>
+                        <button class="logout-btn" id="logoutBtn">تسجيل خروج</button>
+                    </div>
+                    <a href="#register" class="btn"><i class="fas fa-plus-circle"></i> سجل تعاونيتك</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- قسم البطل -->
+    <section class="hero" id="home">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="container fade-in">
+            <h1>منصة تعاونيات سيدي مومن الإلكترونية</h1>
+            <p>منصة متكاملة لعرض وبيع منتجات التعاونيات المحلية بمنطقة سيدي مومن، مع توفير فرص التكوين والمعرفة بالقوانين المنظمة</p>
+            <div class="hero-btns">
+                <a href="#products" class="btn"><i class="fas fa-shopping-basket"></i> استكشف المنتجات</a>
+                <a href="#cooperatives" class="btn btn-outline"><i class="fas fa-users"></i> التعاونيات المشاركة</a>
+                <a href="#register" class="btn btn-outline"><i class="fas fa-user-plus"></i> سجل تعاونيتك</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المنتجات -->
+    <section id="products" class="section-bg-1">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>منتجات التعاونيات</h2>
+                <p>اكتشف مجموعة متنوعة من المنتجات المحلية عالية الجودة من تعاونيات منطقة سيدي مومن</p>
+            </div>
+            <div class="products-grid" id="productsContainer">
+                <!-- المنتجات سيتم إضافتها ديناميكياً -->
+            </div>
+            
+            <!-- قسم إضافة منتج جديد -->
+            <div class="add-section" id="addProductSection" style="display: none;">
+                <h3><i class="fas fa-plus-circle"></i> إضافة منتج جديد</h3>
+                <form id="addProductForm">
+                    <div class="form-group">
+                        <label for="new-product-name"><i class="fas fa-tag"></i> اسم المنتج</label>
+                        <input type="text" id="new-product-name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-product-coop"><i class="fas fa-handshake"></i> التعاونية</label>
+                        <select id="new-product-coop" class="form-control" required>
+                            <option value="">اختر التعاونية</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-product-price"><i class="fas fa-money-bill-wave"></i> السعر (درهم)</label>
+                        <input type="number" id="new-product-price" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-product-image"><i class="fas fa-image"></i> صورة المنتج (رابط)</label>
+                        <input type="url" id="new-product-image" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-product-description"><i class="fas fa-align-left"></i> وصف المنتج</label>
+                        <textarea id="new-product-description" class="form-control" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fas fa-plus"></i> إضافة المنتج</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم التعاونيات -->
+    <section id="cooperatives" class="section-bg-2">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>التعاونيات المشاركة</h2>
+                <p>تعرف على التعاونيات المحلية المشاركة في المنصة وإنتاجاتها المتميزة</p>
+            </div>
+            <div class="cooperatives-grid">
+                <!-- التعاونيات سيتم إضافتها ديناميكياً -->
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم وسائل التواصل الاجتماعي -->
+    <section class="social-section">
+        <div class="container fade-in">
+            <h2 style="margin-bottom: 1.5rem;">تابعنا على وسائل التواصل الاجتماعي</h2>
+            <p>ابق على اطلاع بآخر المستجدات والعروض الخاصة</p>
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <i class="fab fa-facebook"></i>
+                    <span>فيسبوك</span>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                    <span>إنستغرام</span>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                    <span>تويتر</span>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-youtube"></i>
+                    <span>يوتيوب</span>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>واتساب</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم تسجيل التعاونيات -->
+    <section id="register" class="section-bg-1">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>تسجيل التعاونيات</h2>
+                <p>انضم إلى منصتنا واعرض منتجاتك للجمهور المحلي والعالمي</p>
+            </div>
+            <div class="registration-form fade-in">
+                <form id="coop-registration">
+                    <div class="form-group">
+                        <label for="coop-name"><i class="fas fa-signature"></i> اسم التعاونية</label>
+                        <input type="text" id="coop-name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="coop-logo"><i class="fas fa-image"></i> شعار التعاونية</label>
+                        <div class="file-upload">
+                            <input type="file" id="coop-logo" class="file-upload-input" accept="image/*">
+                            <label for="coop-logo" class="file-upload-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>انقر لتحميل شعار التعاونية</span>
+                                <span style="font-size: 0.8rem; color: var(--text-light);">(الحجم الأقصى: 2MB)</span>
+                            </label>
+                            <img id="logo-preview" class="file-upload-preview" src="" alt="معاينة الشعار">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="coop-address"><i class="fas fa-map-marker-alt"></i> عنوان التعاونية</label>
+                        <input type="text" id="coop-address" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="coop-phone"><i class="fas fa-phone"></i> رقم الهاتف</label>
+                        <input type="tel" id="coop-phone" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="coop-email"><i class="fas fa-envelope"></i> البريد الإلكتروني</label>
+                        <input type="email" id="coop-email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="coop-social"><i class="fas fa-share-alt"></i> وسائل التواصل الاجتماعي (اختياري)</label>
+                        <input type="text" id="coop-social" class="form-control" placeholder="روابط حسابات التواصل الاجتماعي">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="coop-products"><i class="fas fa-box-open"></i> المنتجات المعروضة</label>
+                        <textarea id="coop-products" class="form-control" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="coop-desc"><i class="fas fa-align-left"></i> وصف التعاونية ونشاطها</label>
+                        <textarea id="coop-desc" class="form-control" required></textarea>
+                    </div>
+
+                    <!-- إضافة معلومات الحساب البنكي -->
+                    <div class="form-group">
+                        <label for="coop-bank-name"><i class="fas fa-university"></i> اسم البنك</label>
+                        <input type="text" id="coop-bank-name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="coop-account-name"><i class="fas fa-user-tie"></i> اسم صاحب الحساب</label>
+                        <input type="text" id="coop-account-name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="coop-account-number"><i class="fas fa-credit-card"></i> رقم الحساب</label>
+                        <input type="text" id="coop-account-number" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="coop-iban"><i class="fas fa-file-invoice-dollar"></i> رقم IBAN</label>
+                        <input type="text" id="coop-iban" class="form-control" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fas fa-paper-plane"></i> تقديم طلب التسجيل</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم التكوينات -->
+    <section id="trainings" class="section-bg-2">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>التكوينات المتاحة</h2>
+                <p>طور مهاراتك ومعرفتك من خلال برامج التكوين المتخصصة للتعاونيات</p>
+            </div>
+            <div class="trainings-list" id="trainingsContainer">
+                <!-- التكوينات سيتم إضافتها ديناميكياً -->
+            </div>
+            
+            <!-- قسم إضافة تكوين جديد -->
+            <div class="add-section" id="addTrainingSection" style="display: none;">
+                <h3><i class="fas fa-plus-circle"></i> إضافة تكوين جديد</h3>
+                <form id="addTrainingForm">
+                    <div class="form-group">
+                        <label for="new-training-title"><i class="fas fa-heading"></i> عنوان التكوين</label>
+                        <input type="text" id="new-training-title" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-training-date"><i class="fas fa-calendar-alt"></i> تاريخ البدء</label>
+                        <input type="date" id="new-training-date" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-training-description"><i class="fas fa-align-left"></i> وصف التكوين</label>
+                        <textarea id="new-training-description" class="form-control" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة التكوين</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم القوانين -->
+    <section id="laws" class="section-bg-1">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>القوانين المنظمة للتعاونيات</h2>
+                <p>تعرف على الإطار القانوني المنظم لعمل التعاونيات في المغرب</p>
+            </div>
+            <div class="laws-container fade-in">
+                <!-- القوانين ستضاف ديناميكياً -->
+            </div>
+        </div>
+    </section>
+
+    <!-- تذييل الصفحة -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logos">
+                        <div class="footer-logo-wrapper">
+                            <!-- استبدل مسارات الصور بصور افتراضية للعرض -->
+                            <img src="img/logo_alliasim2024.png" alt="شعار رابطة جمعيات سيدي مومن" class="logo">
+                            <span class="footer-text-logo">رابطة جمعيات سيدي مومن</span>
+                        </div>
+                        <div class="footer-logo-wrapper">
+                            <img src="img/logo_dynamique-sidimoumen.png" alt="شعار دينامية سيدي مومن" class="logo">
+                            <span class="footer-text-logo">دينامية سيدي مومن</span>
+                        </div>
+                    </div>
+                    <p style="margin-top: 20px;">منصة إلكترونية لدعم تعاونيات منطقة سيدي مومن وعرض منتجاتها محلياً وعالمياً.</p>
+                </div>
+                
+                <div>
+                    <h3 class="footer-title">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="#products"><i class="fas fa-chevron-left"></i> المنتجات</a></li>
+                        <li><a href="#cooperatives"><i class="fas fa-chevron-left"></i> التعاونيات</a></li>
+                        <li><a href="#register"><i class="fas fa-chevron-left"></i> تسجيل التعاونيات</a></li>
+                        <li><a href="#trainings"><i class="fas fa-chevron-left"></i> التكوينات</a></li>
+                        <li><a href="#laws"><i class="fas fa-chevron-left"></i> القوانين</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-title">اتصل بنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="tel:0641559382"><i class="fas fa-phone"></i> الهاتف: 0641559382</a></li>
+                        <li><a href="mailto:abitalib2163@gmail.com"><i class="fas fa-envelope"></i> البريد الإلكتروني: abitalib2163@gmail.com</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> عنوان المقر: سوق المصير الطابق 3 - سيدي مومن، الدار البيضاء</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-title">وسائل التواصل</h3>
+                    <div class="social-links" style="justify-content: flex-start;">
+                        <a href="#" class="social-link" style="padding: 10px 15px;">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link" style="padding: 10px 15px;">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" style="padding: 10px 15px;">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" style="padding: 10px 15px;">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2025 منصة تعاونيات سيدي مومن</p>
+                <p>تم التطوير بواسطة &copy; محمد ابي طالب - رئيس جمعية انجليز - سيدي مومن</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- جميع النوافذ المنبثقة تبقى كما هي مع تحديث التصميم -->
+    <!-- نافذة الدفع -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="close-modal" id="closePaymentModal">&times;</span>
+            <h2 class="modal-title">إتمام عملية الشراء</h2>
+            <div class="payment-methods">
+                <div class="payment-method selected" data-method="cash">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <div>الدفع عند الاستلام</div>
+                </div>
+                <div class="payment-method" data-method="bank">
+                    <i class="fas fa-university"></i>
+                    <div>تحويل بنكي</div>
+                </div>
+            </div>
+            
+            <div class="payment-details" id="bankDetails">
+                <h3 style="margin: 1.5rem 0 1rem;">معلومات التحويل البنكي</h3>
+                <div class="bank-info" id="bankInfo">
+                    <!-- معلومات الحساب البنكي ستضاف ديناميكياً -->
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">يرجى إرسال إشعار التحويل بعد إتمام العملية</p>
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 2rem;">
+                <button class="btn btn-primary" style="flex: 1;">تأكيد الطلب</button>
+                <button class="btn btn-outline" style="flex: 1;" id="cancelPayment">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة تفاصيل المنتج -->
+    <div class="modal" id="productDetailModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeProductDetailModal">&times;</span>
+            <h2 class="modal-title">تفاصيل المنتج</h2>
+            <div class="product-detail">
+                <div class="product-detail-image">
+                    <img id="detail-product-img" src="" alt="صورة المنتج">
+                </div>
+                <div class="product-detail-info">
+                    <h3 id="detail-product-title" class="product-detail-title"></h3>
+                    <div id="detail-product-coop" class="product-coop"></div>
+                    <div id="detail-product-rating" class="product-rating"></div>
+                    <div id="detail-product-price" class="product-price"></div>
+                    <div id="detail-product-description" class="product-detail-description"></div>
+                    <div class="product-actions" style="margin-top: 20px;">
+                        <a href="#" class="btn btn-primary" id="buyFromDetailBtn"><i class="fas fa-shopping-cart"></i> شراء الآن</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة معلومات التعاونية -->
+    <div class="modal" id="cooperativeModal">
+        <div class="modal-content" style="max-width: 600px;">
+            <span class="close-modal" id="closeCooperativeModal">&times;</span>
+            <h2 class="modal-title">معلومات التعاونية</h2>
+            <div class="cooperative-details">
+                <img id="cooperative-modal-image" src="" alt="صورة التعاونية">
+                <h3 id="cooperative-modal-name"></h3>
+                <p id="cooperative-modal-description"></p>
+                
+                <div class="cooperative-contact">
+                    <p><i class="fas fa-map-marker-alt"></i> <span id="cooperative-modal-address"></span></p>
+                    <p><i class="fas fa-phone"></i> <span id="cooperative-modal-phone"></span></p>
+                    <p><i class="fas fa-envelope"></i> <span id="cooperative-modal-email"></span></p>
+                </div>
+                
+                <div class="cooperative-social-large" id="cooperative-modal-social">
+                    <!-- وسائل التواصل الاجتماعي ستضاف ديناميكياً -->
+                </div>
+                
+                <div style="margin-top: 2rem; display: flex; gap: 10px; justify-content: center;">
+                    <a href="#" class="btn btn-primary" id="contactCooperativeBtn"><i class="fas fa-phone"></i> اتصل بالتعاونية</a>
+                    <a href="#" class="btn btn-outline" id="bankTransferBtn"><i class="fas fa-university"></i> التحويل البنكي</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة تسجيل دخول المسؤول -->
+    <div class="modal" id="adminLoginModal">
+        <div class="modal-content" style="max-width: 450px;">
+            <span class="close-modal" id="closeAdminLoginModal">&times;</span>
+            <h2 class="modal-title">تسجيل دخول المسؤول</h2>
+            <div class="admin-login-form">
+                <form id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="admin-username"><i class="fas fa-user"></i> اسم المستخدم</label>
+                        <input type="text" id="admin-username" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="admin-password"><i class="fas fa-lock"></i> كلمة المرور</label>
+                        <input type="password" id="admin-password" class="form-control" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</button>
+                </form>
+                <div style="margin-top: 1.5rem; text-align: center; color: var(--text-light); font-size: 0.9rem; background: rgba(0,0,0,0.03); padding: 15px; border-radius: var(--border-radius);">
+                    <p>بيانات تسجيل الدخول الافتراضية:</p>
+                    <p><strong>اسم المستخدم:</strong> admin</p>
+                    <p><strong>كلمة المرور:</strong> 123456</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة تأكيد الحذف -->
+    <div class="modal" id="deleteConfirmModal">
+        <div class="modal-content" style="max-width: 450px;">
+            <span class="close-modal" id="closeDeleteModal">&times;</span>
+            <h2 class="modal-title">تأكيد الحذف</h2>
+            <p id="deleteMessage">هل أنت متأكد من أنك تريد حذف هذا العنصر؟</p>
+            <div style="display: flex; gap: 10px; margin-top: 1.5rem;">
+                <button class="btn btn-danger" id="confirmDeleteBtn" style="flex: 1;"><i class="fas fa-trash"></i> نعم، احذف</button>
+                <button class="btn btn-outline" style="flex: 1;" id="cancelDeleteBtn">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // جميع الدوال والبيانات السابقة تبقى كما هي مع إضافة تأثيرات جديدة
+        
+        // تأثير التمرير للرأس
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // تأثيرات الظهور التدريجي للعناصر
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // مراقبة العناصر لإضافة تأثيرات الظهور
+        document.addEventListener('DOMContentLoaded', function() {
+            const elementsToObserve = document.querySelectorAll('.section-title, .registration-form, .add-section');
+            elementsToObserve.forEach(el => {
+                observer.observe(el);
+            });
+        });
+        
+        // باقي الكود JavaScript يبقى كما هو من الإصدار السابق
+        // (بيانات التعاونيات، المنتجات، التكوينات، القوانين، دوال العرض، نظام المسؤول، إلخ)
+        
+        // بيانات التعاونيات
+        let cooperatives = [
+            {
+                id: 1,
+                name: "تعاونية الأمل للتنمية",
+                description: "متخصصة في إنتاج زيت الأركان ومنتجات التجميل الطبيعية. تأسست عام 2010 وتضم 25 امرأة من المنطقة.",
+                image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                address: "حي الأمل، سيدي مومن، الدار البيضاء",
+                phone: "0522-123456",
+                email: "al-amal@coop.ma",
+                social: [
+                    { platform: "facebook", url: "#" },
+                    { platform: "instagram", url: "#" },
+                    { platform: "whatsapp", url: "#" }
+                ],
+                bankAccount: {
+                    bankName: "البنك المغربي للتجارة الخارجية",
+                    accountName: "تعاونية الأمل للتنمية",
+                    accountNumber: "017 810 200567 89 5",
+                    iban: "MA64 0075 8100 2005 6789 5001 717"
+                }
+            },
+            {
+                id: 2,
+                name: "تعاونية نساء سيدي مومن",
+                description: "متخصصة في صناعة السجاد التقليدي والأغطية الصوفية. تساهم في تمكين المرأة الريفية وتوفير فرص عمل مستدامة.",
+                image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                address: "الحي القديم، سيدي مومن، الدار البيضاء",
+                phone: "0522-234567",
+                email: "nissae-sidimoumen@coop.ma",
+                social: [
+                    { platform: "facebook", url: "#" },
+                    { platform: "instagram", url: "#" },
+                    { platform: "whatsapp", url: "#" }
+                ],
+                bankAccount: {
+                    bankName: "بنك المغرب",
+                    accountName: "تعاونية نساء سيدي مومن",
+                    accountNumber: "021 450 789123 45 6",
+                    iban: "MA64 0021 4507 8912 3456 7800 123"
+                }
+            },
+            {
+                id: 3,
+                name: "تعاونية النحالين",
+                description: "متخصصة في إنتاج العسل الطبيعي ومنتجات النحل. نعمل على الحفاظ على النحل المحلي وتطوير تقنيات تربية النحل.",
+                image: "https://images.unsplash.com/photo-1587049352846-4a22237e5446?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                address: "ضاحية سيدي مومن، الدار البيضاء",
+                phone: "0522-345678",
+                email: "nahalin@coop.ma",
+                social: [
+                    { platform: "facebook", url: "#" },
+                    { platform: "instagram", url: "#" },
+                    { platform: "whatsapp", url: "#" }
+                ],
+                bankAccount: {
+                    bankName: "البنك الشعبي المركزي",
+                    accountName: "تعاونية النحالين",
+                    accountNumber: "045 620 456789 12 3",
+                    iban: "MA64 0045 6204 5678 9123 4500 789"
+                }
+            }
+        ];
+
+        // بيانات المنتجات والتكوينات
+        let products = [
+            {
+                id: 1,
+                title: "زيت أركان طبيعي",
+                coopId: 1,
+                price: "120 درهم",
+                image: "https://via.placeholder.com/300x220/27ae60/ffffff?text=زيت+أركان",
+                rating: `
+                    <div class="rating-stars">
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star-half-alt filled"></i>
+                        <span style="color: var(--text-light); margin-right: 5px;">(24)</span>
+                    </div>
+                `,
+                description: "زيت أركان طبيعي مستخلص من شجرة الأركان المغربية النادرة. هذا الزيت غني بمضادات الأكسدة والفيتامينات الأساسية، مما يجعله مثالياً للعناية بالبشرة والشعر. يستخدم في الطبخ والتجميل، ويتم استخلاصه يدوياً للحفاظ على جودته العالية."
+            },
+            {
+                id: 2,
+                title: "سجاد تقليدي",
+                coopId: 2,
+                price: "450 درهم",
+                image: "https://via.placeholder.com/300x220/f2994a/ffffff?text=سجاد+تقليدي",
+                rating: `
+                    <div class="rating-stars">
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="far fa-star"></i>
+                        <span style="color: var(--text-light); margin-right: 5px;">(18)</span>
+                    </div>
+                `,
+                description: "سجاد تقليدي مغربي مصنوع يدوياً من الصوف الطبيعي. يتميز بتصميماته الفنية الفريدة المستوحاة من التراث المغربي الأصيل. كل قطعة تُصنع بدقة عالية وتستغرق أسابيع لإكمالها، مما يجعل كل سجادة تحفة فنية فريدة من نوعها."
+            },
+            {
+                id: 3,
+                title: "عسل طبيعي",
+                coopId: 3,
+                price: "80 درهم",
+                image: "https://via.placeholder.com/300x220/9b51e0/ffffff?text=عسل+طبيعي",
+                rating: `
+                    <div class="rating-stars">
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <span style="color: var(--text-light); margin-right: 5px;">(32)</span>
+                    </div>
+                `,
+                description: "عسل طبيعي 100% يتم جمعه من المناحل في مناطق طبيعية نقية. يتميز هذا العسل بلونه الذهبي وقوامه السميك وطعمه اللذيذ. غني بالعناصر الغذائية المفيدة للصحة، ويمكن استخدامه كمحلي طبيعي أو للعلاج بالطرق التقليدية."
+            }
+        ];
+
+        let trainings = [
+            {
+                id: 1,
+                title: "إدارة التعاونيات الصغيرة",
+                date: "2023-11-15",
+                description: "دورة تكوينية حول أساسيات إدارة التعاونيات والتسويق الرقمي للمنتجات المحلية."
+            },
+            {
+                id: 2,
+                title: "الجودة والتصنيع الغذائي",
+                date: "2023-11-22",
+                description: "ورشة تكوينية حول معايير الجودة في التصنيع الغذائي والتغليف والتسويق."
+            },
+            {
+                id: 3,
+                title: "التصدير والمنافسة الدولية",
+                date: "2023-12-05",
+                description: "ندوة حول آليات تصدير المنتجات المحلية والمتطلبات القانونية للتصدير."
+            }
+        ];
+
+        // بيانات القوانين
+        let laws = [
+            {
+                id: 1,
+                title: "القانون الأساسي للتعاونيات",
+                description: "النصوص القانونية المنظمة لتأسيس وإدارة التعاونيات وفق التشريع المغربي.",
+                icon: "fas fa-gavel"
+            },
+            {
+                id: 2,
+                title: "النظام المالي والمحاسبي للتعاونيات",
+                description: "الإطار القانوني للممارسات المالية والمحاسبية في التعاونيات.",
+                icon: "fas fa-file-invoice-dollar"
+            },
+            {
+                id: 3,
+                title: "دليل الإجراءات الإدارية",
+                description: "دليل شامل للإجراءات الإدارية اللازمة لتسجيل وتسيير التعاونيات.",
+                icon: "fas fa-tasks"
+            },
+            {
+                id: 4,
+                title: "قانون حماية المستهلك والتعاونيات",
+                description: "القوانين المتعلقة بحقوق المستهلك ومسؤوليات التعاونيات تجاه المستهلكين.",
+                icon: "fas fa-user-shield"
+            }
+        ];
+
+        // متغيرات النظام
+        let isAdminLoggedIn = false;
+        let itemToDelete = null;
+        let deleteType = null;
+
+        // باقي الدوال والكود JavaScript يبقى كما هو من الإصدار السابق
+        // (دوال العرض، نظام تسجيل الدخول، إلخ)
+        
+        // دالة لعرض المنتجات
+        function displayProducts() {
+            const productsContainer = document.getElementById('productsContainer');
+            productsContainer.innerHTML = '';
+            
+            products.forEach(product => {
+                const cooperative = cooperatives.find(coop => coop.id === product.coopId);
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card fade-in';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.title}" class="product-img">
+                    <div class="product-info">
+                        <div class="product-title">${product.title}</div>
+                        <div class="product-coop"><i class="fas fa-handshake"></i> ${cooperative.name}</div>
+                        <div class="product-rating">${product.rating}</div>
+                        <div class="product-price">${product.price}</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-primary buy-now-btn" data-product="${product.id}"><i class="fas fa-shopping-cart"></i> شراء الآن</a>
+                            <a href="#" class="btn btn-outline details-btn" data-product="${product.id}"><i class="fas fa-info-circle"></i> تفاصيل</a>
+                        </div>
+                    </div>
+                `;
+                productsContainer.appendChild(productCard);
+            });
+            
+            // إضافة مستمعي الأحداث لأزرار التفاصيل
+            document.querySelectorAll('.details-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productId = parseInt(this.getAttribute('data-product'));
+                    showProductDetail(productId);
+                });
+            });
+            
+            // إضافة مستمعي الأحداث لأزرار شراء الآن
+            document.querySelectorAll('.buy-now-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productId = parseInt(this.getAttribute('data-product'));
+                    showCooperativeInfo(productId);
+                });
+            });
+        }
+
+        // دالة لعرض التكوينات
+        function displayTrainings() {
+            const trainingsContainer = document.getElementById('trainingsContainer');
+            trainingsContainer.innerHTML = '';
+            
+            trainings.forEach(training => {
+                const trainingCard = document.createElement('div');
+                trainingCard.className = 'training-card fade-in';
+                
+                // إضافة زر الحذف فقط إذا كان المسؤول مسجلاً
+                const deleteButton = isAdminLoggedIn ? 
+                    `<button class="delete-training-btn" data-id="${training.id}">
+                        <i class="fas fa-trash"></i>
+                    </button>` : '';
+                
+                trainingCard.innerHTML = `
+                    ${deleteButton}
+                    <h3 class="training-title">${training.title}</h3>
+                    <div class="training-date"><i class="far fa-calendar-alt"></i> يبدأ في: ${formatDate(training.date)}</div>
+                    <p>${training.description}</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 10px; display: inline-block;"><i class="fas fa-user-plus"></i> التسجيل في التكوين</a>
+                `;
+                trainingsContainer.appendChild(trainingCard);
+            });
+            
+            // إضافة مستمعي الأحداث لأزرار حذف التكوينات (فقط إذا كان المسؤول مسجلاً)
+            if (isAdminLoggedIn) {
+                document.querySelectorAll('.delete-training-btn').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const trainingId = parseInt(this.getAttribute('data-id'));
+                        confirmDelete(trainingId, 'training', 'هذا التكوين');
+                    });
+                });
+            }
+        }
+
+        // دالة لعرض التعاونيات
+        function displayCooperatives() {
+            const cooperativesContainer = document.querySelector('.cooperatives-grid');
+            cooperativesContainer.innerHTML = '';
+            
+            cooperatives.forEach(cooperative => {
+                const cooperativeCard = document.createElement('div');
+                cooperativeCard.className = 'cooperative-card fade-in';
+                
+                let socialHTML = '';
+                cooperative.social.forEach(social => {
+                    socialHTML += `<a href="${social.url}"><i class="fab fa-${social.platform}"></i></a>`;
+                });
+                
+                // إضافة زر الحذف فقط إذا كان المسؤول مسجلاً
+                const deleteButton = isAdminLoggedIn ? 
+                    `<button class="delete-coop-btn" data-id="${cooperative.id}">
+                        <i class="fas fa-trash"></i>
+                    </button>` : '';
+                
+                cooperativeCard.innerHTML = `
+                    ${deleteButton}
+                    <img src="${cooperative.image}" alt="${cooperative.name}" class="cooperative-img">
+                    <div class="cooperative-info">
+                        <div class="cooperative-name">${cooperative.name}</div>
+                        <p>${cooperative.description}</p>
+                        <div class="cooperative-social">
+                            ${socialHTML}
+                        </div>
+                    </div>
+                `;
+                cooperativesContainer.appendChild(cooperativeCard);
+            });
+            
+            // إضافة مستمعي الأحداث لأزرار حذف التعاونيات (فقط إذا كان المسؤول مسجلاً)
+            if (isAdminLoggedIn) {
+                document.querySelectorAll('.delete-coop-btn').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const coopId = parseInt(this.getAttribute('data-id'));
+                        confirmDelete(coopId, 'cooperative', 'هذه التعاونية');
+                    });
+                });
+            }
+        }
+
+        // دالة لعرض القوانين
+        function displayLaws() {
+            const lawsContainer = document.querySelector('.laws-container');
+            lawsContainer.innerHTML = '';
+            
+            laws.forEach(law => {
+                const lawItem = document.createElement('div');
+                lawItem.className = 'law-item fade-in';
+                
+                // إضافة زر الحذف فقط إذا كان المسؤول مسجلاً
+                const deleteButton = isAdminLoggedIn ? 
+                    `<button class="delete-law-btn" data-id="${law.id}">
+                        <i class="fas fa-trash"></i>
+                    </button>` : '';
+                
+                lawItem.innerHTML = `
+                    ${deleteButton}
+                    <div class="law-icon">
+                        <i class="${law.icon}"></i>
+                    </div>
+                    <div class="law-content">
+                        <h3 class="law-title">${law.title}</h3>
+                        <p>${law.description}</p>
+                        <a href="#" class="btn btn-outline"><i class="fas fa-download"></i> تحميل النص الكامل</a>
+                    </div>
+                `;
+                lawsContainer.appendChild(lawItem);
+            });
+            
+            // إضافة قسم رفع القوانين (فقط إذا كان المسؤول مسجلاً)
+            if (isAdminLoggedIn) {
+                const uploadLawSection = document.createElement('div');
+                uploadLawSection.className = 'upload-law-section';
+                uploadLawSection.innerHTML = `
+                    <h3 style="margin-bottom: 1.5rem;"><i class="fas fa-plus-circle"></i> إضافة قانون جديد</h3>
+                    <p style="margin-bottom: 1.5rem;">يمكنك رفع وثائق قانونية جديدة للمنصة</p>
+                    <form id="addLawForm">
+                        <div class="form-group">
+                            <label for="law-title"><i class="fas fa-heading"></i> عنوان القانون</label>
+                            <input type="text" id="law-title" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="law-description"><i class="fas fa-align-left"></i> وصف القانون</label>
+                            <textarea id="law-description" class="form-control" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="law-icon"><i class="fas fa-icons"></i> أيقونة القانون</label>
+                            <select id="law-icon" class="form-control" required>
+                                <option value="fas fa-gavel">قانون</option>
+                                <option value="fas fa-file-invoice-dollar">مالي</option>
+                                <option value="fas fa-tasks">إجراءات</option>
+                                <option value="fas fa-user-shield">حماية</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة القانون</button>
+                    </form>
+                `;
+                lawsContainer.appendChild(uploadLawSection);
+                
+                // إضافة مستمع الحدث لنموذج إضافة القانون
+                document.getElementById('addLawForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const newLaw = {
+                        id: laws.length + 1,
+                        title: document.getElementById('law-title').value,
+                        description: document.getElementById('law-description').value,
+                        icon: document.getElementById('law-icon').value
+                    };
+                    
+                    laws.push(newLaw);
+                    displayLaws();
+                    this.reset();
+                    alert('تم إضافة القانون بنجاح!');
+                });
+            }
+            
+            // إضافة مستمعي الأحداث لأزرار حذف القوانين (فقط إذا كان المسؤول مسجلاً)
+            if (isAdminLoggedIn) {
+                document.querySelectorAll('.delete-law-btn').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const lawId = parseInt(this.getAttribute('data-id'));
+                        confirmDelete(lawId, 'law', 'هذا القانون');
+                    });
+                });
+            }
+        }
+
+        // دالة لتنسيق التاريخ
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ar-EG', options);
+        }
+
+        // دالة لعرض تفاصيل المنتج
+        function showProductDetail(productId) {
+            const product = products.find(p => p.id === productId);
+            const cooperative = cooperatives.find(coop => coop.id === product.coopId);
+            
+            if (product) {
+                document.getElementById('detail-product-img').src = product.image;
+                document.getElementById('detail-product-img').alt = product.title;
+                document.getElementById('detail-product-title').textContent = product.title;
+                document.getElementById('detail-product-coop').textContent = cooperative.name;
+                document.getElementById('detail-product-price').textContent = product.price;
+                document.getElementById('detail-product-rating').innerHTML = product.rating;
+                document.getElementById('detail-product-description').textContent = product.description;
+                
+                // تحديث زر الشراء في نافذة التفاصيل
+                document.getElementById('buyFromDetailBtn').setAttribute('data-product', product.id);
+                
+                document.getElementById('productDetailModal').style.display = 'flex';
+            }
+        }
+
+        // دالة لعرض معلومات التعاونية
+        function showCooperativeInfo(productId) {
+            const product = products.find(p => p.id === productId);
+            const cooperative = cooperatives.find(coop => coop.id === product.coopId);
+            
+            if (cooperative) {
+                document.getElementById('cooperative-modal-image').src = cooperative.image;
+                document.getElementById('cooperative-modal-image').alt = cooperative.name;
+                document.getElementById('cooperative-modal-name').textContent = cooperative.name;
+                document.getElementById('cooperative-modal-description').textContent = cooperative.description;
+                document.getElementById('cooperative-modal-address').textContent = cooperative.address;
+                document.getElementById('cooperative-modal-phone').textContent = cooperative.phone;
+                document.getElementById('cooperative-modal-email').textContent = cooperative.email;
+                
+                // تحديث وسائل التواصل الاجتماعي
+                const socialContainer = document.getElementById('cooperative-modal-social');
+                socialContainer.innerHTML = '';
+                
+                cooperative.social.forEach(social => {
+                    const socialLink = document.createElement('a');
+                    socialLink.href = social.url;
+                    socialLink.innerHTML = `<i class="fab fa-${social.platform}"></i>`;
+                    socialContainer.appendChild(socialLink);
+                });
+                
+                // تحديث زر الاتصال
+                document.getElementById('contactCooperativeBtn').href = `tel:${cooperative.phone}`;
+                
+                // تحديث زر التحويل البنكي
+                document.getElementById('bankTransferBtn').setAttribute('data-cooperative', cooperative.id);
+                
+                document.getElementById('cooperativeModal').style.display = 'flex';
+            }
+        }
+
+        // دالة لعرض معلومات الحساب البنكي للتعاونية
+        function showBankAccount(cooperativeId) {
+            const cooperative = cooperatives.find(coop => coop.id === cooperativeId);
+            
+            if (cooperative && cooperative.bankAccount) {
+                const bankInfo = document.getElementById('bankInfo');
+                bankInfo.innerHTML = `
+                    <p><strong>اسم البنك:</strong> ${cooperative.bankAccount.bankName}</p>
+                    <p><strong>اسم الحساب:</strong> ${cooperative.bankAccount.accountName}</p>
+                    <p><strong>رقم الحساب:</strong> ${cooperative.bankAccount.accountNumber}</p>
+                    <p><strong>IBAN:</strong> ${cooperative.bankAccount.iban}</p>
+                `;
+                
+                document.getElementById('paymentModal').style.display = 'flex';
+            }
+        }
+
+        // دالة تأكيد الحذف
+        function confirmDelete(id, type, name) {
+            if (!isAdminLoggedIn) {
+                alert('ليس لديك صلاحية لحذف هذا العنصر');
+                return;
+            }
+            
+            itemToDelete = id;
+            deleteType = type;
+            
+            document.getElementById('deleteMessage').textContent = `هل أنت متأكد من أنك تريد حذف ${name}؟`;
+            document.getElementById('deleteConfirmModal').style.display = 'flex';
+        }
+
+        // دالة تنفيذ الحذف
+        function executeDelete() {
+            if (!isAdminLoggedIn) {
+                alert('ليس لديك صلاحية لحذف هذا العنصر');
+                return;
+            }
+            
+            if (deleteType === 'cooperative') {
+                cooperatives = cooperatives.filter(coop => coop.id !== itemToDelete);
+                // حذف المنتجات المرتبطة بالتعاونية المحذوفة
+                products = products.filter(product => product.coopId !== itemToDelete);
+                displayCooperatives();
+                displayProducts();
+                alert('تم حذف التعاونية بنجاح!');
+            } else if (deleteType === 'training') {
+                trainings = trainings.filter(training => training.id !== itemToDelete);
+                displayTrainings();
+                alert('تم حذف التكوين بنجاح!');
+            } else if (deleteType === 'law') {
+                laws = laws.filter(law => law.id !== itemToDelete);
+                displayLaws();
+                alert('تم حذف القانون بنجاح!');
+            }
+            
+            document.getElementById('deleteConfirmModal').style.display = 'none';
+            itemToDelete = null;
+            deleteType = null;
+        }
+
+        // دالة تسجيل دخول المسؤول
+        function adminLogin(username, password) {
+            // بيانات تسجيل الدخول الافتراضية (يجب تغييرها في بيئة الإنتاج)
+            const adminCredentials = {
+                username: 'admin',
+                password: '123456'
+            };
+            
+            if (username === adminCredentials.username && password === adminCredentials.password) {
+                isAdminLoggedIn = true;
+                updateUIForAdmin();
+                document.getElementById('adminLoginModal').style.display = 'none';
+                alert('تم تسجيل الدخول بنجاح كمسؤول للنظام');
+                return true;
+            } else {
+                alert('اسم المستخدم أو كلمة المرور غير صحيحة');
+                return false;
+            }
+        }
+
+        // دالة تسجيل خروج المسؤول
+        function adminLogout() {
+            isAdminLoggedIn = false;
+            updateUIForAdmin();
+            alert('تم تسجيل الخروج بنجاح');
+        }
+
+        // دالة تحديث واجهة المستخدم بناءً على حالة تسجيل الدخول
+        function updateUIForAdmin() {
+            const adminLoginSection = document.getElementById('adminLoginSection');
+            const adminInfoSection = document.getElementById('adminInfoSection');
+            const addProductSection = document.getElementById('addProductSection');
+            const addTrainingSection = document.getElementById('addTrainingSection');
+            
+            if (isAdminLoggedIn) {
+                adminLoginSection.style.display = 'none';
+                adminInfoSection.style.display = 'flex';
+                addProductSection.style.display = 'block';
+                addTrainingSection.style.display = 'block';
+            } else {
+                adminLoginSection.style.display = 'block';
+                adminInfoSection.style.display = 'none';
+                addProductSection.style.display = 'none';
+                addTrainingSection.style.display = 'none';
+            }
+            
+            // إعادة عرض المحتوى لتحديث أزرار الحذف
+            displayCooperatives();
+            displayTrainings();
+            displayLaws();
+        }
+
+        // باقي دوال JavaScript تبقى كما هي
+        
+        // كود JavaScript لإدارة التفاعلات في المنصة
+        
+        // إدارة نموذج تسجيل دخول المسؤول
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('admin-username').value;
+            const password = document.getElementById('admin-password').value;
+            
+            adminLogin(username, password);
+        });
+        
+        // فتح نافذة تسجيل دخول المسؤول
+        document.getElementById('adminLoginBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('adminLoginModal').style.display = 'flex';
+        });
+        
+        // تسجيل خروج المسؤول
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            adminLogout();
+        });
+        
+        // إدارة نموذج التسجيل
+        document.getElementById('coop-registration').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // إنشاء تعاونية جديدة
+            const newCooperative = {
+                id: cooperatives.length + 1,
+                name: document.getElementById('coop-name').value,
+                description: document.getElementById('coop-desc').value,
+                image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80", // صورة افتراضية
+                address: document.getElementById('coop-address').value,
+                phone: document.getElementById('coop-phone').value,
+                email: document.getElementById('coop-email').value,
+                social: [
+                    { platform: "facebook", url: "#" },
+                    { platform: "instagram", url: "#" },
+                    { platform: "whatsapp", url: "#" }
+                ],
+                bankAccount: {
+                    bankName: document.getElementById('coop-bank-name').value,
+                    accountName: document.getElementById('coop-account-name').value,
+                    accountNumber: document.getElementById('coop-account-number').value,
+                    iban: document.getElementById('coop-iban').value
+                }
+            };
+            
+            cooperatives.push(newCooperative);
+            displayCooperatives();
+            populateCooperativeSelect();
+            
+            alert('تم استلام طلب تسجيل تعاونيتك بنجاح! سنقوم بالاتصال بك في أقرب وقت.');
+            this.reset();
+            document.getElementById('logo-preview').style.display = 'none';
+        });
+        
+        // معاينة شعار التعاونية قبل التحميل
+        document.getElementById('coop-logo').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('logo-preview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // إدارة نظام الدفع
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        const bankDetails = document.getElementById('bankDetails');
+        const paymentModal = document.getElementById('paymentModal');
+        const cancelPayment = document.getElementById('cancelPayment');
+        const closePaymentModal = document.getElementById('closePaymentModal');
+        
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', function() {
+                paymentMethods.forEach(m => m.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                if (this.dataset.method === 'bank') {
+                    bankDetails.style.display = 'block';
+                } else {
+                    bankDetails.style.display = 'none';
+                }
+            });
+        });
+        
+        // فتح نافذة الدفع عند النقر على زر الشراء
+        document.addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('btn') && e.target.textContent === 'شراء الآن') {
+                e.preventDefault();
+                paymentModal.style.display = 'flex';
+            }
+        });
+        
+        // إغلاق نافذة الدفع
+        cancelPayment.addEventListener('click', function() {
+            paymentModal.style.display = 'none';
+        });
+        
+        closePaymentModal.addEventListener('click', function() {
+            paymentModal.style.display = 'none';
+        });
+        
+        // إدارة نافذة تفاصيل المنتج
+        const productDetailModal = document.getElementById('productDetailModal');
+        const closeProductDetailModal = document.getElementById('closeProductDetailModal');
+        
+        closeProductDetailModal.addEventListener('click', function() {
+            productDetailModal.style.display = 'none';
+        });
+        
+        // إدارة نافذة معلومات التعاونية
+        const cooperativeModal = document.getElementById('cooperativeModal');
+        const closeCooperativeModal = document.getElementById('closeCooperativeModal');
+        
+        closeCooperativeModal.addEventListener('click', function() {
+            cooperativeModal.style.display = 'none';
+        });
+        
+        // إدارة نافذة تسجيل دخول المسؤول
+        const adminLoginModal = document.getElementById('adminLoginModal');
+        const closeAdminLoginModal = document.getElementById('closeAdminLoginModal');
+        
+        closeAdminLoginModal.addEventListener('click', function() {
+            adminLoginModal.style.display = 'none';
+        });
+        
+        // إدارة نافذة تأكيد الحذف
+        const deleteConfirmModal = document.getElementById('deleteConfirmModal');
+        const closeDeleteModal = document.getElementById('closeDeleteModal');
+        const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+        const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+        
+        closeDeleteModal.addEventListener('click', function() {
+            deleteConfirmModal.style.display = 'none';
+        });
+        
+        cancelDeleteBtn.addEventListener('click', function() {
+            deleteConfirmModal.style.display = 'none';
+        });
+        
+        confirmDeleteBtn.addEventListener('click', function() {
+            executeDelete();
+        });
+        
+        // زر الشراء من نافذة التفاصيل
+        document.getElementById('buyFromDetailBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const productId = parseInt(this.getAttribute('data-product'));
+            showCooperativeInfo(productId);
+            productDetailModal.style.display = 'none';
+        });
+        
+        // زر التحويل البنكي في نافذة التعاونية
+        document.getElementById('bankTransferBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const cooperativeId = parseInt(this.getAttribute('data-cooperative'));
+            showBankAccount(cooperativeId);
+            cooperativeModal.style.display = 'none';
+        });
+        
+        // إضافة منتج جديد
+        document.getElementById('addProductForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newProduct = {
+                id: products.length + 1,
+                title: document.getElementById('new-product-name').value,
+                coopId: parseInt(document.getElementById('new-product-coop').value),
+                price: document.getElementById('new-product-price').value + ' درهم',
+                image: document.getElementById('new-product-image').value,
+                description: document.getElementById('new-product-description').value,
+                rating: `
+                    <div class="rating-stars">
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span style="color: var(--text-light); margin-right: 5px;">(0)</span>
+                    </div>
+                `
+            };
+            
+            products.push(newProduct);
+            displayProducts();
+            this.reset();
+            alert('تم إضافة المنتج بنجاح!');
+        });
+        
+        // إضافة تكوين جديد
+        document.getElementById('addTrainingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newTraining = {
+                id: trainings.length + 1,
+                title: document.getElementById('new-training-title').value,
+                date: document.getElementById('new-training-date').value,
+                description: document.getElementById('new-training-description').value
+            };
+            
+            trainings.push(newTraining);
+            displayTrainings();
+            this.reset();
+            alert('تم إضافة التكوين بنجاح!');
+        });
+        
+        // ملء قائمة التعاونيات في نموذج إضافة المنتج
+        function populateCooperativeSelect() {
+            const select = document.getElementById('new-product-coop');
+            select.innerHTML = '<option value="">اختر التعاونية</option>';
+            cooperatives.forEach(cooperative => {
+                const option = document.createElement('option');
+                option.value = cooperative.id;
+                option.textContent = cooperative.name;
+                select.appendChild(option);
+            });
+        }
+        
+        // إغلاق النوافذ عند النقر خارجها
+        window.addEventListener('click', function(e) {
+            if (e.target === document.getElementById('paymentModal')) {
+                paymentModal.style.display = 'none';
+            }
+            if (e.target === document.getElementById('productDetailModal')) {
+                productDetailModal.style.display = 'none';
+            }
+            if (e.target === document.getElementById('cooperativeModal')) {
+                cooperativeModal.style.display = 'none';
+            }
+            if (e.target === document.getElementById('adminLoginModal')) {
+                adminLoginModal.style.display = 'none';
+            }
+            if (e.target === document.getElementById('deleteConfirmModal')) {
+                deleteConfirmModal.style.display = 'none';
+            }
+        });
+        
+        // تنشيط روابط التنقل
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // عرض المنتجات والتكوينات والتعاونيات عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProducts();
+            displayTrainings();
+            displayCooperatives();
+            displayLaws();
+            populateCooperativeSelect();
+            
+            // إضافة تأثيرات الظهور للعناصر
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
